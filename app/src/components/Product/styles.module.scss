@@ -1,0 +1,25 @@
+.cardContainer {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid gray;
+    border-radius: 20px;
+    padding: 2px;
+    cursor: pointer;
+  }
+.cardContainer:hover {
+    border: 2px solid grey;
+}
+img{
+    height: 150px;
+    width: 150px;
+}
+
+.cardList {
+    width: 85vw;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+}

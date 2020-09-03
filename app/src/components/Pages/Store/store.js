@@ -6,7 +6,6 @@ const Store = () => (
     <div>
     <NavBar />
     <Header/>
-  
     </div>
   );
   
