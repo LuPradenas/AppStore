@@ -1,8 +1,15 @@
-import React from "react";
+import React, {Component} from "react";
 import MainLogo from "../LogIn/MainLogo";
 import styles from "./styles.module.scss";
 
-const Register = () => {
+class Register extends Component {
+  state ={
+      form:{
+         email:'',
+         password:''
+      }
+    }
+    render(){
   return (
     <div className={styles.Header}>
       <MainLogo />
@@ -10,6 +17,7 @@ const Register = () => {
         <div className={styles.Field}>
           <label className={styles.Label}>Correo Electronico</label>
           <input
+            name="email"
             className={styles.Input}
             type="email"
             placeholder="Correo Electronico"
@@ -19,6 +27,7 @@ const Register = () => {
         <div className={styles.Field}>
           <label className={styles.Label}>Contraseña</label>
           <input
+            name="password"
             className={styles.Input}
             type="password"
             placeholder="Contraseña"
@@ -51,5 +60,6 @@ const Register = () => {
     </div>
   );
 };
+}
 
 export default Register;

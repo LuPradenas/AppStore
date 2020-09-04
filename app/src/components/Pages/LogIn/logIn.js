@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 import axios from 'axios';
 //import Cookies from 'universal-cookie';
 //poner la ruta de mia
-const baseUrl="http://http://localhost:3001/usuarios"
+const baseUrl=" http://localhost:8080/apps/:id"
 
 class Login extends Component {
   state ={
