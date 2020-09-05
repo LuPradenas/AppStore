@@ -22,4 +22,19 @@ img{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 20px;
+  
+}
+.app{
+    width: 85vw;
+   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+.render{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    flex-direction: column;
+    border:2px solid gray;
 }

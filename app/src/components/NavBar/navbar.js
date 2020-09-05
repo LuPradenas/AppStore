@@ -36,7 +36,7 @@ class Nav extends Component {
             </li>
 
             <li className={styles.navitem}>
-              <Link to="/" className={styles.a}>Carrito</Link>
+              <Link to="/Cart" className={styles.a}>Carrito</Link>
             </li>
             <li className={styles.navitem}>Cerrar Sesion</li>
           </ul>

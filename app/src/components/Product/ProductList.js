@@ -1,33 +1,57 @@
 import React from 'react';
 import styles from './styles.module.scss';
-import Product from './Product';
-
+import axios from 'axios';
+//pruebo una api diferente para ver si me anda
+const dataUrl="https://jsonplaceholder.typicode.com/users";
 class ProductsList extends React.Component {
    state = {
-	   products:[],
+	  data:[],
    };
 
-   async componentDidMount(){
-	axios.get('http://localhost:8080//apps/:id')
-	.then(res =>{
-		const products = res.data;
-    this.setState({products: products.data});
-	})
-
-   }
+peticonGet=()=>{
+	axios.get(dataUrl).then(response =>{
+		this.setState({data:response.data});
+	}).catch(error=>{
+	console.log(error.message);
+  })
+}
+ componentDidMount(){
+	 this.peticonGet();
+ }
+ handleChange=async e=>{
+	e.persist();
+	await this.setState({
+	  form:{
+		...this.state.form,
+		[e.target.name]: e.target.value
+	  }
+	});
+	console.log(this.state.form);
+	}
+	
 	render() {
-	  const { products } = this.props;
-  
 	  return (
-		<div className={styles.cardList}>
-			{products.map(product => (
-				<Product
-					key={product.id}
-					product={product}
-				/>
-			))}
-		</div>
-	);
+
+	  <div className={styles.app}>
+	     <button>Agregar Aplicacion</button>
+		  {this.state.data.map(empresa=>{
+			return(
+			<div className={styles.render}>
+			<p>{empresa.id}</p>
+			<p>{empresa.name}</p>
+
+			<div>
+			 <button >Editar</button>
+			<button >Eliminar</button>
+	        </div>
+		 </div>
+			)
+		  })}
+	  </div>
+
+	
+	  
+	  )
  };
 }
 

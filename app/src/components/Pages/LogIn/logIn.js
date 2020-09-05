@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import MainLogo from "./MainLogo";
 import styles from "./styles.module.scss";
 import axios from 'axios';
-//import Cookies from 'universal-cookie';
-//poner la ruta de mia
-const baseUrl=" http://localhost:8080/apps/:id"
+
+const baseUrl="http://localhost:8080/login"
 
 class Login extends Component {
   state ={
@@ -23,28 +22,35 @@ class Login extends Component {
         });
         console.log(this.state.form);
      }
+   // no se  recargue la pagina
+     iniciarSesion = async e =>{
+      e.preventDefault();
 
-     iniciarSesion = async e=>{
-    await axios.get(baseUrl,{params: {email: this.state.form.email, password:this.state.form.password}})
-.then(response=>{
-  return response.data;
-})
-.then(response=>{
-  if(response.length>0){
-     // var respuesta=response[0];
-  }else{
-    alert('El email o la contraseña no son correctas');
-  }
-})
-.cath(error=>{
-  console.log(error);
-})
-     }
+      axios.post(baseUrl, {
+        email: this.state.form.email,
+        password: this.state.form.password,
+      }, {withCredentials : true})
+      .then(function (response) {
+        let token = document.cookie;
+        let rows = response.data[0];
+        return (rows, token);
+      })
+      //funcion que si coincide con la base de datos te redirecciona a  tienda
+      .then(function (response) {
+        window.location.assign('/Store');
+      })
+      .catch(function (error) {
+        console.error(error + ' my error message');
+      });
+    }
+
 render() {
+  
   return (
+    
     <div className={styles.Header}>
       <MainLogo />
-      <form className={styles.LoginForm}>
+      <form className={styles.LoginForm} onSubmit={this.iniciarSesion}>
         <div className={styles.Field}>
           <label className={styles.Label}> Correo Electronico </label>
           <input
@@ -68,7 +74,7 @@ render() {
           />
         </div>
         <div className={styles.Group}>
-          <button className={styles.button} onClick={()=>this.iniciarSesion()}> Ingresar </button>
+          <button className={styles.button} type="submit"> Ingresar </button>
         </div>
       </form>
     </div>
